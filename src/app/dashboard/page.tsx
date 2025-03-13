@@ -1,4 +1,9 @@
-export default function Dashboard() {
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+
+export default async function Dashboard() {
+  const { getRoles } = getKindeServerSession();
+  const roles = await getRoles();
+
   return (
     <div className="container">
       <div className="card start-hero">
@@ -7,6 +12,8 @@ export default function Dashboard() {
           Your authentication is all sorted.
           <br />
           Build the important stuff.
+          <br />
+          <code>{JSON.stringify(roles, null, 2)}</code>
         </p>
       </div>
       <section className="next-steps-section">
